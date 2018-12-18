@@ -24,11 +24,12 @@ class PostitForm extends React.Component {
     const { title } = this.state
     return (
       <div>
-        <h3>Post a Postitini</h3>
+        <h3>Inscribe a Novel Postele</h3>
         <form onSubmit={this.handleSubmit}>
           <input
             value={title}
             onChange={this.handleChange}
+            autoFocus='true'
             required
           />
         </form>

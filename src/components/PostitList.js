@@ -1,13 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Postit from './Postit'
-// import Warning from './Warning'
 
 const filtered = (postits, currentFilter) => {
   switch(currentFilter) {
-    case 'Active':
+    case 'Underway':
       return postits.filter( p => !p.complete )
-    case 'Completed':
+    case 'Concluded':
       return postits.filter( p => p.complete )
     default:
       return postits
@@ -16,9 +15,8 @@ const filtered = (postits, currentFilter) => {
 
 const PostitList = ({ postits, postitCount, filter }) => (
   <div>
-    <h3>There are {postitCount} postits</h3>
-    {/* <Warning /> */}
-    <ul>
+    <h3>You have lovingly crafted {postitCount} Posteles</h3>
+    <ul className="container">
       { filtered(postits, filter).map( (p) =>
         <Postit key={p.id} {...p} /> 
       )}

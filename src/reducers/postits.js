@@ -15,24 +15,31 @@ export const addPostit = (postit) => {
   return { type: ADD_POSTIT, postit }
 }
 
-export const editPostit = (id) => {
-  return { type: EDIT_POSTIT, id }
+export const editPostit = (postit) => {
+  return { type: EDIT_POSTIT, postit }
 }
 
-export default ( state = [], action ) => {
-  switch(action.type) {
+export default (state = [], action) => {
+  switch (action.type) {
     case ADD_POSTIT:
       return [action.postit, ...state]
+    // case EDIT_POSTIT:
+    // debugger
+    //   return [action.postit, ...state]
     case EDIT_POSTIT:
-      return [action.postit, ...state]
+    return state.map( postit => {
+      if (postit.id === action.postit.id)
+      return action.postit
+      return postit
+      })
     case TOGGLE_POSTIT:
-      return state.map( postit => {
+      return state.map(postit => {
         if (postit.id === action.id)
-          return {...postit, complete: !postit.complete }
+          return { ...postit, complete: !postit.complete }
         return postit
       })
     case DELETE_POSTIT:
-      return state.filter( p => p.id !== action.id )
+      return state.filter(p => p.id !== action.id)
     default:
       return state
   }
