@@ -23,14 +23,11 @@ export default (state = [], action) => {
   switch (action.type) {
     case ADD_POSTIT:
       return [action.postit, ...state]
-    // case EDIT_POSTIT:
-    // debugger
-    //   return [action.postit, ...state]
     case EDIT_POSTIT:
-    return state.map( postit => {
-      if (postit.id === action.postit.id)
-      return action.postit
-      return postit
+      return state.map(postit => {
+        if (postit.id === action.postit.id)
+          return action.postit
+        return postit
       })
     case TOGGLE_POSTIT:
       return state.map(postit => {
